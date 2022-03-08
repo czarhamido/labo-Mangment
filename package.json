@@ -1,4 +1,19 @@
-{
+{ 
+   "name": "labomangment",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix sysmangment && npm run build --prefix sysmangment"
+  },
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
