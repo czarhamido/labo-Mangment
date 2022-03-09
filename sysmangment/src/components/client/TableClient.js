@@ -31,7 +31,7 @@ function TableClient() {
     };
     useEffect(()=> {
       LoadData()
-      axios.get('http://localhost:5000/analyse')
+      axios.get('/analyse')
       .then(res => {
         setDataAnalyse(res.data);
       })
