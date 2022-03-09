@@ -49,7 +49,7 @@ function TableClient() {
       priceanalyse:priceAnalyse,
     }
     const creatClient=()=>{
-      axios.post('http://localhost:5000/client',newCl)
+      axios.post('/client',newCl)
       .then(response =>{
         setDataClient([...dataClient,response.data]);
         console.log(dataClient);
