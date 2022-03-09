@@ -17,7 +17,7 @@ function NavLabo() {
         </Nav>
 
         <Nav >
-          <Link  id="RouterNavLink" to='/analyse' style={{ textDecoration: 'none' ,color:"#FFF" }}>Analyse</Link>
+          <Link  id="RouterNavLink" to='/ana' style={{ textDecoration: 'none' ,color:"#FFF" }}>Analyse</Link>
         </Nav>
     
         </Nav>

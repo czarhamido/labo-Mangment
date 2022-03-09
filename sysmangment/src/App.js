@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route exact  path="/" element={<TableClient />} />
 
-          <Route exact path="/analyse" element={<TableAnalyse />} />
+          <Route exact path="/ana" element={<TableAnalyse />} />
 
         </Routes>
       </div>

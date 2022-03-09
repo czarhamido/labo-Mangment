@@ -25,7 +25,7 @@ app.get("/",cors(),(req,res)=>{
     res.sendFile(`${__dirname}/sysmangment/build/index.html`)
 })
 
-app.get("/analyse",cors(),(req,res)=>{
+app.get("/ana",cors(),(req,res)=>{
   res.sendFile(`${__dirname}/sysmangment/build/index.html`)
 })
   
