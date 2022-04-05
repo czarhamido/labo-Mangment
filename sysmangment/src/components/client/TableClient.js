@@ -13,6 +13,7 @@ function TableClient() {
     const[nameanalyse,setNameAnalyse]=useState([]);
     const [priceAnalyse,setPriceAnalyse]=useState([]);
     const [totalPrice,setTotalPrice]=useState([]);
+
     const [totalP,setTotalP]=useState(0);
     const [q,setQ]=useState("");
     const handleClose = () =>{setShow(false);console.log(nameanalyse);} ;
@@ -92,6 +93,8 @@ function TableClient() {
            setTotalP(totalPrice.reduce((a,b)=>a+b,0))
           
     }
+
+
 function search(rows){
   return rows.filter((row)=>row.name.indexOf(q)> -1);
 }

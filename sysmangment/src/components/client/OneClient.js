@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
-import { Button, Card, Col, ListGroup, Modal, Stack, Table } from "react-bootstrap";
+import { Button, Card, Col, Form, FormControl, ListGroup, Modal, Stack, Table } from "react-bootstrap";
 import axios from "axios";
 import ReactToPrint from 'react-to-print';
 
+
 function OneClient(client) {
   const [show, setShow] = useState(false);
+  const [showSMS, setShowSMS] = useState(false);
+  const [sms,setSms]=useState("");
   const [showDelet, setShowDelet] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -24,6 +27,13 @@ function OneClient(client) {
 }
 
 
+function sendSMS(){
+  console.log(sms);
+  axios.post('/sms',{number:client.number,sms:sms}).then(response =>{
+    console.log(response);
+  });
+}
+
 
   return (
     <Col >
@@ -36,13 +46,18 @@ function OneClient(client) {
               <ListGroup.Item>
                 {" "}
                 <Stack direction="horizontal" gap={1} className="col-md-5 ">
-                  <Button variant="success">SendSMS</Button>
+                  <Button variant="success" 
+                  onClick={() => {
+                    setShowSMS(true);
+
+                    }}
+                  >SendSMS</Button>
                   <Button
                     variant="danger"
                     onClick={() => {
                       deleteClient(client._id);
-                      window.location.reload();
-                    }}
+                      setShowDelet(true);
+                      }}
                   >
                     Delete
                   </Button>
@@ -67,7 +82,6 @@ function OneClient(client) {
               <tr>
                 <th>#</th>
                 <th>Analyse</th>
-                <th>Price</th>
               </tr>
             </thead>
             <tbody>
@@ -75,9 +89,7 @@ function OneClient(client) {
         <tr>
       <td>{i+1}</td>
       <td>  {ann}</td>
-      <td>{client.priceanalyse[i]}
 
-      </td>
       </tr>
       ))}
 
@@ -111,9 +123,48 @@ function OneClient(client) {
             variant="secondary"
             onClick={() => {
               setShowDelet(false);
+              window.location.reload();
+
             }}
           >
             ok
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal
+        show={showSMS}
+        onHide={() => {
+          setShowSMS(false);
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Send SMS</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body >
+     <Form className="d-flex">
+        <FormControl
+          type="text"
+          placeholder="write the message"
+          className="m-4 "
+          aria-label="text"
+          value={sms}
+          onChange={(e)=>{setSms(e.target.value);
+            }}
+        />
+        </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              sendSMS();
+              window.location.reload();
+
+            }}
+          >
+            Send
           </Button>
         </Modal.Footer>
       </Modal>
